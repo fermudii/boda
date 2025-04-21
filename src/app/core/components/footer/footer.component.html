@@ -1,0 +1,41 @@
+
+<section class="min-h-[480px] md:min-h-[280px] z-0">
+</section>
+<footer class="fixed bottom-0 left-0 w-full z-1">
+  <img class="absolute top-0 left-0 w-full h-full object-cover object-center z-0"
+         src="colibri.JPG" alt="comision">
+
+  <div class="absolute top-0 left-0 w-full h-full bg-black opacity-50 z-1"></div>
+
+  <div class="relative z-10 text-[rgba(246,246,246,.8)] py-16 px-6">
+    <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 text-lg">
+
+      <!-- Branding -->
+      <div>
+        <h3 class="text-4xl font-semibold mb-4">Coyolicatzin y Fernando</h3>
+      </div>
+
+      <!-- Enlaces -->
+      <div>
+        <ul class="space-y-2">
+          <li><a href="#inicio" (click)="scrollTo('inicio', $event)" class="hover:text-white transition">Inicio</a></li>
+          <li><a href="#itinerario" (click)="scrollTo('itinerario', $event)" class="hover:text-white transition">Itinerario</a></li>
+
+        </ul>
+      </div>
+
+      <!-- Redes sociales -->
+      <div class="mt-8 border-t md:border-t-0 border-[rgba(246,246,246,.5)] pt-6">
+        <div class="flex space-x-4">
+          <a href="#" target="_blank" class="hover:text-white transition">Preguntas Frecuentes</a>
+          <a href="#" target="_blank" class="hover:text-white transition">Hoteles</a>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="mt-8 border-t border-[rgba(246,246,246,.5)] pt-6 text-center text-xs ">
+      &copy; 2025 Coyolicatzin y Fernando. Todos los derechos reservados.
+    </div>
+  </div>
+</footer>

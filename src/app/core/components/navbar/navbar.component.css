@@ -1,0 +1,33 @@
+:host ::ng-deep .p-menubar {
+  border: none;
+  background: rgb(246, 246, 246);
+  padding: 1rem;
+}
+
+:host ::ng-deep .p-icon {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+:host ::ng-deep .p-menubar-mobile-active .p-menubar-root-list {
+  border-radius: 1rem;
+}
+
+
+/* Layout vertical en desktop */
+@media (min-width: 960px) {
+  ::ng-deep .responsive-menubar {
+    flex-direction: column !important;
+  }
+
+  ::ng-deep .responsive-menubar .p-menubar-root-list {
+    flex-direction: column !important;
+  }
+
+  ::ng-deep .responsive-menubar .p-menuitem {
+    margin-bottom: 0.5rem;
+  }
+  ::ng-deep .p-menubar {
+    background: transparent !important;
+  }
+}
