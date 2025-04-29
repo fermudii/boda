@@ -1,0 +1,34 @@
+<div class="flex flex-col gap-5 pt-10">
+  <div class="flex flex-col gap-2 ">
+    <label for="name">Nombre</label>
+    <input type="text" pInputText [(ngModel)]="name" variant="filled" pSize="small" aria-describedby="name-help">
+  </div>
+  <div class="flex flex-col gap-2 ">
+    <label for="name">Teléfono</label>
+    <p-inputmask mask="(999) 999-9999" [(ngModel)]="phone" aria-describedby="phone-help" size="small" variant="filled"/>
+  </div>
+  <div class="flex flex-col gap-2">
+    <label for="name">¿Asistirás?</label>
+    <div class="flex flex-row gap-10">
+      <div class="flex items-center gap-2">
+        <p-radioButton [(ngModel)]="attendance" inputId="yes_attendance" name="attendance" value="true" size="large"
+        variant="filled"></p-radioButton>
+        <label for="yes_attendance">Sí</label>
+      </div>
+      <div class="flex items-center gap-2">
+        <p-radioButton [(ngModel)]="attendance" inputId="no_attendance" name="attendance" value="false" size="large"
+        variant="filled"></p-radioButton>
+        <label for="no_attendance">No</label>
+      </div>
+    </div>
+    <div class="flex flex-col gap-2 pt-5 ">
+      <label for="name">Número de Personas</label>
+      <p-inputNumber class="w-fit" type="text" [showButtons]="true" [(ngModel)]="guessCount" variant="filled" size="small" aria-describedby="guess-help">
+      </p-inputNumber>
+      <small id="guess-help">Contándote a ti</small>
+    </div>
+    <div class="pt-10">
+      <p-button label="Confirmar Asistencia" (onClick)="submitRSVP()" severity="warn"></p-button>
+    </div>
+  </div>
+</div>

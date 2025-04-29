@@ -22,6 +22,18 @@ export class NavbarComponent implements OnInit {
       {
         label: 'Itinerario',
         command: () => scrollToElementById('itinerario', -60)
+      },
+      {
+        label: 'Asistencia',
+        command: () => scrollToElementById('asistencia', -60)
+      },
+      {
+        label: 'Transporte',
+        command: () => scrollToElementById('transporte', -60)
+      },
+      {
+        label: 'Hoteles',
+        command: () => scrollToElementById('hoteles', -60)
       }
     ]
   }
