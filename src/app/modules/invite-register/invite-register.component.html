@@ -1,0 +1,56 @@
+<div class="w-full relative z-10">
+  <div class=" pt-10 relative grid grid-cols-6 gap-3 sm:grid-cols-12 max-w-screen-2xl mx-auto px-6 md:px-24 z-10">
+    <div class="col-start-1 col-end-7 sm:col-start-4 sm:col-end-10">
+      <div class="flex flex-col gap-10">
+        <h1 class="text-5xl text-center pb-4 font-semibold text-balance text-gray-900">Invitados</h1>
+        <p-button class="text-center" (onClick)="showInviteForm = true">Agregar Invitado</p-button>
+        <p-table [columns]="cols" [value]="invites" [tableStyle]="{ 'min-width': '50rem' }" size="small"
+                   [scrollable]="true" scrollHeight="400px">
+          <ng-template #header let-columns>
+            <tr>
+              <th pFrozenColumn>Alias</th>
+              <th>Nombre</th>
+              <th>Teléfono</th>
+              <th>Asistencia</th>
+              <th>No.Invitados</th>
+              <th>Commentarios</th>
+            </tr>
+          </ng-template>
+          <ng-template #body let-rowData let-columns="columns">
+            <tr>
+              <td (click)="copyInvitation(rowData)" pFrozenColumn>{{rowData.alias}}</td>
+              <td>{{rowData.fullname}}</td>
+              <td>{{rowData.phone}}</td>
+              <td>{{rowData.attendance !== null ? rowData.attendance ? 'Si' : 'No' : ''}}</td>
+              <td>{{rowData.guestsCount}}</td>
+              <td>{{rowData.comments}}</td>
+            </tr>
+          </ng-template>
+        </p-table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<p-dialog header="Nuevo Invitado" [(visible)]="showInviteForm" [style]="{width: '400px'}">
+  <form [formGroup]="inviteForm" (ngSubmit)="submitInvite()">
+    <div class="flex flex-col gap-2">
+      <label for="fullname">Nombre</label>
+      <input id="fullname" type="text" pInputText formControlName="fullname" name="fullname" required />
+    </div>
+    <div class="flex flex-col gap-2">
+      <label for="alias">Alias</label>
+      <input id="alias" type="text" pInputText formControlName="alias" name="alias" required />
+    </div>
+    <div class="flex flex-col gap-2">
+      <label for="phone">Teléfono</label>
+      <p-inputmask id="phone" required mask="(999) 999-9999" styleClass="phone-mask" formControlName="phone"/>
+    </div>
+    <div class="pt-10 flex flex-row gap-10 justify-between">
+      <p-button type="submit" label="Guardar" icon="pi pi-check" [disabled]="!inviteForm.valid"></p-button>
+      <p-button type="button" label="Cancelar" icon="pi pi-times" (onClick)="closeDialog()"></p-button>
+    </div>
+
+  </form>
+</p-dialog>
+<p-toast [breakpoints]="{ '920px': { width: '100%', right: '0', left: '0' } }" />

@@ -7,7 +7,7 @@ body {
   display: block;
   font-family: "Times New Roman", serif;
   position: relative;
-  background: white;
+  background-color: rgb(246, 246, 246);
   min-height: 100vh;
   overflow-x: hidden;
   overscroll-behavior: none;
@@ -19,4 +19,8 @@ body {
 
 .bg-light {
   background-color: rgb(246, 246, 246);
+}
+
+body.overflow-hidden {
+  overflow: hidden;
 }

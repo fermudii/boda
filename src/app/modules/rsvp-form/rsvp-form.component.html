@@ -5,11 +5,11 @@
       <input id="fullname" type="text" required pInputText formControlName="fullname" variant="filled" pSize="small">
     </div>
     <div class="flex flex-col gap-2">
-      <label for="name">Teléfono</label>
+      <label for="phone">Teléfono</label>
       <p-inputmask id="phone" required mask="(999) 999-9999" styleClass="phone-mask" formControlName="phone" size="small" variant="filled"/>
     </div>
     <div class="flex flex-col gap-2">
-      <label for="name">¿Asistirás?</label>
+      <label for="attendance">¿Asistirás?</label>
       <div class="flex flex-row gap-10">
         <div class="flex items-center gap-2">
           <p-radioButton id="attendance" required formControlName="attendance" inputId="yes_attendance" [value]="true" size="large"
@@ -23,7 +23,7 @@
         </div>
       </div>
       <div class="flex flex-col gap-2 py-5 ">
-        <label for="name">Número de Personas</label>
+        <label for="guestsCount">Número de Personas</label>
         <p-inputNumber id="guestsCount" required type="text" [showButtons]="true" formControlName="guestsCount" variant="filled" size="small" aria-describedby="guests-help">
         </p-inputNumber>
         <small id="guests-help">Contándote a ti</small>

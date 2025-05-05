@@ -3,6 +3,8 @@ import {Apollo} from 'apollo-angular';
 import {GET_INVITE_BY_TOKEN} from '../graphql/get-invite-by-token';
 import {Invite} from '../models/invite';
 import {UPDATE_INVITE} from '../graphql/update-invite';
+import {GET_INVITES} from '../graphql/get-invites';
+import {CREATE_INVITE} from '../graphql/create-invite';
 
 @Injectable({
   providedIn: 'root'
@@ -22,6 +24,24 @@ export class InviteService {
     return this.apollo.mutate({
       mutation: UPDATE_INVITE,
       variables: {id: id, input: input},
+    })
+  }
+
+  getInvites() {
+    return this.apollo.watchQuery({
+      query: GET_INVITES,
+
+    })
+  }
+
+  createInvite(fullname: string, alias: string, phone: string) {
+    return this.apollo.mutate({
+      mutation: CREATE_INVITE,
+      variables: {fullname: fullname, alias: alias, phone: phone},
+      refetchQueries: [
+        {
+          query: GET_INVITES
+        }]
     })
   }
 

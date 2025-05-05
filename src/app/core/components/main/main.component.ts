@@ -7,6 +7,8 @@ import {RsvpFormComponent} from '../../../modules/rsvp-form/rsvp-form.component'
 import {ActivatedRoute, Router} from '@angular/router';
 import {InviteService} from '../../../modules/invite/services/invite.service';
 import {Invite} from '../../../modules/invite/models/invite';
+import {NgIf} from '@angular/common';
+import {Button} from 'primeng/button';
 
 @Component({
   selector: 'app-main',
@@ -15,7 +17,8 @@ import {Invite} from '../../../modules/invite/models/invite';
     NavbarComponent,
     PapelPicadoLineComponent,
     FlorLineComponent,
-    RsvpFormComponent
+    RsvpFormComponent,
+    NgIf,
   ],
   templateUrl: './main.component.html',
   styleUrl: './main.component.css'
@@ -25,6 +28,8 @@ export class MainComponent implements OnInit, OnDestroy {
   targetDate = new Date('2025-12-27T00:00:00');
   intervalId: any;
   invite: Invite | undefined;
+  loading: boolean = true;
+  showNotFoundMessage: boolean = false;
 
   days = 0;
   hours = 0;
@@ -36,6 +41,7 @@ export class MainComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+    document.body.classList.toggle('overflow-hidden', this.loading);
     this.checkToken();
     this.updateCountdown();
     this.intervalId = setInterval(() => this.updateCountdown(), 1000);
@@ -68,15 +74,17 @@ export class MainComponent implements OnInit, OnDestroy {
       if (this.token) {
         this.inviteService.getInviteByToken(this.token)
           .subscribe({
-            next: ({data, loading}) => {
+            next: ({data}) => {
               // @ts-ignore
               this.invite = data.inviteByToken
+              this.loading = false;
+              document.body.classList.toggle('overflow-hidden', this.loading);
               console.log(data);
 
             },
             error: err => {
               console.log(err);
-              this.router.navigate(['/unauthorized']);
+              this.showNotFoundMessage = true;
             }
           })
       } else {
