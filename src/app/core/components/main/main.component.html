@@ -31,7 +31,7 @@
       </section>
       <app-papel-picado-line></app-papel-picado-line>
       <section class="flex flex-col gap-5">
-        <h2 class="text-3xl text-terniary">Estamos emocionado de verte y esperamos puedas acompañarnos en nuetro dia tan especial!</h2>
+        <h2 class="text-3xl text-terniary"><b>{{invite?.alias}}</b>, estamos emocionado de verte y esperamos puedas acompañarnos en nuetro dia tan especial!</h2>
       </section>
       <app-papel-picado-line></app-papel-picado-line>
       <h2 id="itinerario" class="text-3xl">Itinerario</h2>
@@ -60,12 +60,12 @@
       <app-flor-line></app-flor-line>
       <h2 id="asistencia" class="text-3xl">Asistencia</h2>
       <section>
-          <p class="text-terniary text-lg">
+          <p class="text-terniary text-lg pb-10">
             Por favor, llena el siguiente formulario para confirmar tu asistencia antes del
             <span class="font-semibold">25 de septiembre de 2025</span>.
             ¡Nos encantará contar contigo en este día tan especial!
           </p>
-        <app-rsvp-form></app-rsvp-form>
+        <app-rsvp-form [invite]="invite"></app-rsvp-form>
       </section>
       <img src="fer_poh_transparent.webp" alt="fer y poh">
       <h2 id="transporte" class="text-3xl">Transporte</h2>
