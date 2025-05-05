@@ -26,7 +26,6 @@ interface Column {
     ReactiveFormsModule,
     InputText,
     InputMask,
-    Ripple,
     Toast,
   ],
   templateUrl: './invite-register.component.html',
