@@ -28,6 +28,14 @@ export class NavbarComponent implements OnInit {
         command: () => scrollToElementById('asistencia', -60)
       },
       {
+        label: 'Código de Vestimenta',
+        command: () => scrollToElementById('vestimenta', -60)
+      },
+      {
+        label: 'Mesa de Regalos',
+        command: () => scrollToElementById('regalos', -60)
+      },
+      {
         label: 'Transporte',
         command: () => scrollToElementById('transporte', -60)
       },

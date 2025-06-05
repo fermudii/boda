@@ -1,48 +1,56 @@
-<form [formGroup]="attendanceForm" (ngSubmit)="submitRSVP()">
-  <div class="flex flex-col gap-5 my-card relative ">
-    <div class="flex flex-col gap-2 ">
-      <label for="fullname">Nombre</label>
-      <input id="fullname" type="text" required pInputText formControlName="fullname" variant="filled" pSize="small">
-    </div>
-    <div class="flex flex-col gap-2">
-      <label for="phone">Teléfono</label>
-      <p-inputmask id="phone" required mask="(999) 999-9999" styleClass="phone-mask" formControlName="phone" size="small" variant="filled"/>
-    </div>
-    <div class="flex flex-col gap-2">
-      <label for="attendance">¿Asistirás?</label>
-      <div class="flex flex-row gap-10">
-        <div class="flex items-center gap-2">
-          <p-radioButton id="attendance" required formControlName="attendance" inputId="yes_attendance" [value]="true" size="large"
-                         variant="filled"></p-radioButton>
-          <label for="yes_attendance">Sí</label>
+<section class="section">
+  <h2 id="asistencia" class="sub-header">Asistencia</h2>
+  <p class="text-ternary">
+    Por favor, llena el siguiente formulario para confirmar tu asistencia antes del
+    <span class="font-semibold">25 de septiembre de 2025</span>.
+    ¡Nos encantará contar contigo en este día tan especial!
+  </p>
+  <form [formGroup]="attendanceForm" (ngSubmit)="submitRSVP()">
+    <div class="flex flex-col gap-5 my-card relative ">
+      <div class="flex flex-col gap-2 ">
+        <label for="fullname">Nombre</label>
+        <input id="fullname" type="text" required pInputText formControlName="fullname" variant="filled" pSize="small">
+      </div>
+      <div class="flex flex-col gap-2">
+        <label for="phone">Teléfono</label>
+        <p-inputmask id="phone" required mask="(999) 999-9999" styleClass="phone-mask" formControlName="phone" size="small" variant="filled"/>
+      </div>
+      <div class="flex flex-col gap-2">
+        <label for="attendance">¿Asistirás?</label>
+        <div class="flex flex-row gap-10">
+          <div class="flex items-center gap-2">
+            <p-radioButton id="attendance" required formControlName="attendance" inputId="yes_attendance" [value]="true" size="large"
+                           variant="filled"></p-radioButton>
+            <label for="yes_attendance">Sí</label>
+          </div>
+          <div class="flex items-center gap-2">
+            <p-radioButton id="attendance" required formControlName="attendance" inputId="no_attendance" [value]="false" size="large"
+                           variant="filled"></p-radioButton>
+            <label for="no_attendance">No</label>
+          </div>
         </div>
-        <div class="flex items-center gap-2">
-          <p-radioButton id="attendance" required formControlName="attendance" inputId="no_attendance" [value]="false" size="large"
-                         variant="filled"></p-radioButton>
-          <label for="no_attendance">No</label>
+        <div class="flex flex-col gap-2 py-5 ">
+          <label for="guestsCount">Número de Personas</label>
+          <p-inputNumber id="guestsCount" required type="text" [showButtons]="true" formControlName="guestsCount" variant="filled" size="small" aria-describedby="guests-help">
+          </p-inputNumber>
+          <small id="guests-help">Contándote a ti</small>
+        </div>
+        <p-floatlabel variant="on">
+          <textarea class="w-full" rows="5" cols="30" pTextarea variant="filled" formControlName="comments"></textarea>
+          <label for="on_label">Comentarios</label>
+        </p-floatlabel>
+        <div class="pt-10">
+          <p-button label="Confirmar Asistencia" type="submit" [disabled]="!attendanceForm.valid"></p-button>
         </div>
       </div>
-      <div class="flex flex-col gap-2 py-5 ">
-        <label for="guestsCount">Número de Personas</label>
-        <p-inputNumber id="guestsCount" required type="text" [showButtons]="true" formControlName="guestsCount" variant="filled" size="small" aria-describedby="guests-help">
-        </p-inputNumber>
-        <small id="guests-help">Contándote a ti</small>
-      </div>
-      <p-floatlabel variant="on">
-      <textarea class="w-full" rows="5" cols="30" pTextarea variant="filled" formControlName="comments"></textarea>
-      <label for="on_label">Comentarios</label>
-      </p-floatlabel>
-      <div class="pt-10">
-        <p-button label="Confirmar Asistencia" type="submit" [disabled]="!attendanceForm.valid"></p-button>
+      <div *ngIf="isSubmitted && showConfirmationMsg" style="background-color: rgba(0, 0, 0, 0.3);" class="absolute inset-0 flex flex-col items-center justify-center rounded-lg z-10">
+        <div class="bg-white p-6 rounded-lg shadow-lg text-center max-w-sm">
+          <h2 class="text-2xl  font-bold mb-2">¡Confirmado!</h2>
+          <p class="pb-2 text-lg text-center">Tu confirmación ha sido guardada.</p>
+          <p-button label="Ver/Actualizar" (onClick)="hideConfirmationMsg()" size="small"></p-button>
+        </div>
       </div>
     </div>
-    <div *ngIf="isSubmitted && showConfirmationMsg" style="background-color: rgba(0, 0, 0, 0.3);" class="absolute inset-0 flex flex-col items-center justify-center rounded-lg z-10">
-      <div class="bg-white p-6 rounded-lg shadow-lg text-center max-w-sm">
-      <h2 class="text-2xl  font-bold mb-2">¡Confirmado!</h2>
-      <p class="pb-2 text-lg text-center">Tu confirmación ha sido guardada.</p>
-      <p-button label="Ver/Actualizar" (onClick)="hideConfirmationMsg()" size="small"></p-button>
-      </div>
-    </div>
-  </div>
+  </form>
+</section>
 
-</form>

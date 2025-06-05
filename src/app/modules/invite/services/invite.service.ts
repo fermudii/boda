@@ -5,6 +5,7 @@ import {Invite} from '../models/invite';
 import {UPDATE_INVITE} from '../graphql/update-invite';
 import {GET_INVITES} from '../graphql/get-invites';
 import {CREATE_INVITE} from '../graphql/create-invite';
+import {DELETE_INVITE} from '../graphql/delete-invite';
 
 @Injectable({
   providedIn: 'root'
@@ -38,6 +39,17 @@ export class InviteService {
     return this.apollo.mutate({
       mutation: CREATE_INVITE,
       variables: {fullname: fullname, alias: alias, phone: phone},
+      refetchQueries: [
+        {
+          query: GET_INVITES
+        }]
+    })
+  }
+
+  deleteInvite(id: number) {
+    return this.apollo.mutate({
+      mutation: DELETE_INVITE,
+      variables: {id: id},
       refetchQueries: [
         {
           query: GET_INVITES

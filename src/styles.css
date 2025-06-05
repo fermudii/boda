@@ -13,8 +13,9 @@ body {
   overscroll-behavior: none;
 }
 
-.text-terniary {
+.text-ternary {
   color: rgba(17,17,17,.6);
+  @apply text-lg;
 }
 
 .bg-light {
@@ -24,3 +25,13 @@ body {
 body.overflow-hidden {
   overflow: hidden;
 }
+
+.section {
+  @apply flex flex-col gap-10;
+}
+
+.sub-header {
+  @apply text-3xl;
+}
+
+

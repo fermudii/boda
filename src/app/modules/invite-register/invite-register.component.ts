@@ -37,6 +37,8 @@ export class InviteRegisterComponent implements OnInit{
   invites: Invite[] = [];
   cols!: Column[];
   showInviteForm: boolean = false;
+  showRemoveDialog: boolean = false;
+  inviteToRemove: Invite | undefined;
 
   constructor(private inviteService: InviteService, private messageService: MessageService) {
 
@@ -45,7 +47,7 @@ export class InviteRegisterComponent implements OnInit{
     this.inviteService.getInvites().valueChanges.subscribe(result => {
       // @ts-ignore
       this.invites = result.data.invites;
-    })
+    });
     this.cols = [
       { field: 'alias', header: 'Alias' },
       { field: 'fullname', header: 'Nombre' },
@@ -64,11 +66,10 @@ export class InviteRegisterComponent implements OnInit{
   })
 
   submitInvite() {
-    console.log("submittting")
     const { fullname, alias, phone } = this.inviteForm.value;
     this.inviteService.createInvite(fullname!, alias!, phone!).subscribe(result => {
       this.showInviteForm = false;
-      this.showSuccess();
+      this.showSuccess("Invitado agregado");
     })
   }
 
@@ -78,12 +79,29 @@ export class InviteRegisterComponent implements OnInit{
 
   }
 
+  openRemoveDialog(invite: Invite) {
+    this.inviteToRemove = invite;
+    this.showRemoveDialog = true;
+  }
+
+  removeInvite(){
+    this.inviteService.deleteInvite(this.inviteToRemove!.id).subscribe(result => {
+      this.showRemoveDialog = false;
+      this.showSuccess("Invitado Eliminado!")
+    })
+  }
+
   closeDialog() {
     this.showInviteForm = false;
   }
 
-  showSuccess() {
-    this.messageService.add({ severity: 'success', summary: 'Listo!', detail: 'Invitado agregado' });
+  closeRemoveDialog() {
+    this.inviteToRemove = undefined;
+    this.showRemoveDialog = false;
+  }
+
+  showSuccess(message: string) {
+    this.messageService.add({ severity: 'success', summary: 'Listo!', detail: message });
   }
 
 }

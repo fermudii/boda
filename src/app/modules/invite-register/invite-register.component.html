@@ -4,8 +4,9 @@
       <div class="flex flex-col gap-10">
         <h1 class="text-5xl text-center pb-4 font-semibold text-balance text-gray-900">Invitados</h1>
         <p-button class="text-center" (onClick)="showInviteForm = true">Agregar Invitado</p-button>
+        <p class="text-ternary">Puede hacer click en el alias para copiar la invitación :)</p>
         <p-table [columns]="cols" [value]="invites" [tableStyle]="{ 'min-width': '50rem' }" size="small"
-                   [scrollable]="true" scrollHeight="400px">
+                   [scrollable]="true" scrollHeight="400px" class="border border-gray-300">
           <ng-template #header let-columns>
             <tr>
               <th pFrozenColumn>Alias</th>
@@ -14,6 +15,7 @@
               <th>Asistencia</th>
               <th>No.Invitados</th>
               <th>Commentarios</th>
+              <th>Acciones</th>
             </tr>
           </ng-template>
           <ng-template #body let-rowData let-columns="columns">
@@ -24,6 +26,10 @@
               <td>{{rowData.attendance !== null ? rowData.attendance ? 'Si' : 'No' : ''}}</td>
               <td>{{rowData.guestsCount}}</td>
               <td>{{rowData.comments}}</td>
+              <td>
+                <p-button icon="pi pi-trash" size="small" severity="danger"
+                          (onClick)="openRemoveDialog(rowData)"></p-button>
+              </td>
             </tr>
           </ng-template>
         </p-table>
@@ -32,7 +38,7 @@
   </div>
 </div>
 
-<p-dialog header="Nuevo Invitado" [(visible)]="showInviteForm" [style]="{width: '400px'}">
+<p-dialog header="Nuevo Invitado" [(visible)]="showInviteForm" [style]="{width: '400px', margin: '10px'}" [closable]="false">
   <form [formGroup]="inviteForm" (ngSubmit)="submitInvite()">
     <div class="flex flex-col gap-2">
       <label for="fullname">Nombre</label>
@@ -52,5 +58,12 @@
     </div>
 
   </form>
+</p-dialog>
+<p-dialog header="Remover Invitado"  [(visible)]="showRemoveDialog" [style]="{width: '250px'}" [closable]="false">
+  <p>¿Estás segura que quieres remover a {{inviteToRemove?.alias}}? </p>
+    <div class="pt-10 flex flex-row  justify-between">
+      <p-button type="button" label="Remover" severity="danger" icon="pi pi-check" size="small" (onClick)="removeInvite()"></p-button>
+      <p-button type="button" label="Cancelar" icon="pi pi-times" size="small" (onClick)="closeRemoveDialog()"></p-button>
+    </div>
 </p-dialog>
 <p-toast [breakpoints]="{ '920px': { width: '100%', right: '0', left: '0' } }" />
