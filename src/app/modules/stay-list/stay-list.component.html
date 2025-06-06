@@ -1,0 +1,8 @@
+<section class="section">
+  <h2 id="hoteles" class="sub-header">Hoteles</h2>
+  <ng-container *ngFor="let stay of stayList">
+    <app-info-item
+      [infoItem]="stay"
+    ></app-info-item>
+  </ng-container>
+</section>
