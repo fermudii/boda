@@ -6,12 +6,12 @@ import {InviteRegisterComponent} from './modules/invite-register/invite-register
 export const routes: Routes = [
   {
     path: '',
-    title: 'Boda!',
+    title: 'Boda de Coli y Fer!',
     component: MainComponent,
   },
   {
     path: 'registro',
-    title: 'Registro',
+    title: 'Registro de Invitados',
     component: InviteRegisterComponent,
   },
   {
