@@ -41,8 +41,6 @@ export class LoadingInviteComponent implements OnInit {
               this.inviteFound.emit(data.inviteByToken);
               this.loading = false;
               document.body.classList.toggle('overflow-hidden', this.loading);
-              console.log(data);
-
             },
             error: err => {
               console.log(err);
