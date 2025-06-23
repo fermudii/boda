@@ -28,11 +28,11 @@ export class NavbarComponent implements OnInit {
         command: () => scrollToElementById('asistencia', -60)
       },
       {
-        label: 'Código de Vestimenta',
+        label: 'Vestimenta',
         command: () => scrollToElementById('vestimenta', -60)
       },
       {
-        label: 'Mesa de Regalos',
+        label: 'Regalos',
         command: () => scrollToElementById('regalos', -60)
       },
       {

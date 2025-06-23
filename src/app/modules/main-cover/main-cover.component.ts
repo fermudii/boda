@@ -36,8 +36,21 @@ export class MainCoverComponent implements OnInit, OnDestroy {
     this.seconds = Math.floor((distance % (1000 * 60)) / 1000);
   }
 
+  createCalendar(){
+    const title = encodeURIComponent("Boda de Coyo y Fer");
+    const description = encodeURIComponent("Acompáñanos a celebrar nuestra boda");
+    const address = encodeURIComponent("San Pedro Comitancillo, Oaxaca");
+    const startDate = this.toGoogleDate(new Date('2025-12-27T11:00:00'));
+    const endDate = this.toGoogleDate(new Date('2025-12-27T23:00:00'));
+    return `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${title}&dates=${startDate}/${endDate}&details=${description}&location=${address}`;
+  }
+
   ngOnDestroy() {
     clearInterval(this.intervalId);
+  }
+
+  private toGoogleDate(date: Date): string {
+    return date.toISOString().replace(/-|:|\.\d\d\d/g, '');
   }
 
 }

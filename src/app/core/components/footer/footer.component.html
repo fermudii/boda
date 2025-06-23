@@ -14,23 +14,24 @@
 
       <!-- Branding -->
       <div>
-        <h3 class="text-4xl font-semibold mb-4">Coyolicatzin y Fernando</h3>
+        <h3 class="text-4xl font-semibold mb-4 md:mb-2">
+          Coyolicatzin y Fernando</h3>
       </div>
 
       <!-- Enlaces -->
-      <div>
-        <ul class="space-y-2">
+      <div class="self-end">
+        <ul class="space-y-2 md:grid md:grid-cols-2">
           <li><a href="#inicio" (click)="scrollTo('inicio', $event)" class="hover:text-white transition">Inicio</a></li>
           <li><a href="#itinerario" (click)="scrollTo('itinerario', $event)" class="hover:text-white transition">Itinerario</a></li>
           <li><a href="#asistencia" (click)="scrollTo('asistencia', $event)" class="hover:text-white transition">Asistencia</a></li>
-          <li><a href="#vestimenta" (click)="scrollTo('vestimenta', $event)" class="hover:text-white transition">Código de Vestimenta</a></li>
+          <li><a href="#vestimenta" (click)="scrollTo('vestimenta', $event)" class="hover:text-white transition">Vestimenta</a></li>
 
         </ul>
       </div>
 
       <!-- Redes sociales -->
-      <div class="mt-8 border-t md:border-t-0 border-[rgba(246,246,246,.5)] pt-6">
-        <div class="flex space-x-4">
+      <div class="border-t md:border-t-0 border-[rgba(246,246,246,.5)] pt-6 md:self-end">
+        <div class="flex md:justify-end space-x-4 space-y-2">
           <a href="#transporte" (click)="scrollTo('transporte', $event)" class="hover:text-white transition">Transporte</a>
           <a href="#hoteles" (click)="scrollTo('hoteles', $event)" class="hover:text-white transition">Hoteles</a>
           <a href="#regalos" (click)="scrollTo('regalos', $event)" class="hover:text-white transition">Regalos</a>

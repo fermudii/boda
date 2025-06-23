@@ -20,6 +20,8 @@ export class ItineraryComponent implements  OnInit {
 
   itineraryList: Itinerary[] = [];
   showProgramaDialog: boolean = false;
+  casaGrandeAddress: string = "https://maps.app.goo.gl/7P7d7vRQKPQ73oic8";
+  iglesiaAddress: string = "https://maps.app.goo.gl/d4dRKjHZ5hJPQxE3A";
 
   ngOnInit(): void {
   this.itineraryList.push(
@@ -27,7 +29,7 @@ export class ItineraryComponent implements  OnInit {
       "Dejada de la luz",
       "Casa Grande",
       "Viernes 26 de Diciembre 06:00 p.m.",
-      "https://maps.app.goo.gl/7GvoJ1zPh13i1LXv7",
+      this.casaGrandeAddress,
       "Ver Mapa"
     ),
     new Itinerary(
@@ -39,14 +41,14 @@ export class ItineraryComponent implements  OnInit {
       "Misa",
       "Iglesia del Pueblo",
       "Sábado 27 de Diciembre 11:00 a.m.",
-      "https://maps.app.goo.gl/7GvoJ1zPh13i1LXv7",
+      this.iglesiaAddress,
       "Ver Mapa"
     ),
     new Itinerary(
       "Recepción",
       "Casa Grande",
       "Sábado 27 de Diciembre 1:00 p.m.",
-      "https://maps.app.goo.gl/7GvoJ1zPh13i1LXv7",
+      this.casaGrandeAddress,
       "Ver Mapa"
     ),
     new Itinerary(
