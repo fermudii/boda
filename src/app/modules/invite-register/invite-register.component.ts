@@ -2,13 +2,11 @@ import {Component, OnInit} from '@angular/core';
 import {TableModule} from 'primeng/table';
 import {Invite} from '../invite/models/invite';
 import {InviteService} from '../invite/services/invite.service';
-import {NgForOf, NgSwitch, NgSwitchCase, NgSwitchDefault} from '@angular/common';
 import {Button} from 'primeng/button';
 import {Dialog} from 'primeng/dialog';
 import {FormControl, FormGroup, ReactiveFormsModule} from '@angular/forms';
 import {InputText} from 'primeng/inputtext';
 import {InputMask} from 'primeng/inputmask';
-import {Ripple} from 'primeng/ripple';
 import {MessageService} from 'primeng/api';
 import {Toast} from 'primeng/toast';
 
@@ -37,8 +35,10 @@ export class InviteRegisterComponent implements OnInit{
   invites: Invite[] = [];
   cols!: Column[];
   showInviteForm: boolean = false;
+  showEditInviteForm: boolean = false;
   showRemoveDialog: boolean = false;
   inviteToRemove: Invite | undefined;
+  inviteIdToEdit: number | undefined;
 
   constructor(private inviteService: InviteService, private messageService: MessageService) {
 
@@ -65,11 +65,29 @@ export class InviteRegisterComponent implements OnInit{
     phone: new FormControl('')
   })
 
+  editInviteForm = new FormGroup({
+    fullname: new FormControl(''),
+    alias: new FormControl(''),
+    phone: new FormControl(''),
+    comments: new FormControl(''),
+    attendance: new FormControl(null as boolean | null),
+    guestsCount: new FormControl(null as number | null),
+  })
+
   submitInvite() {
     const { fullname, alias, phone } = this.inviteForm.value;
     this.inviteService.createInvite(fullname!, alias!, phone!).subscribe(result => {
       this.showInviteForm = false;
       this.showSuccess("Invitado agregado");
+      this.inviteForm.reset();
+    })
+  }
+
+  submitEditedInvite() {
+    this.inviteService.updateInvite(this.inviteIdToEdit! ,this.editInviteForm.getRawValue() as Invite).subscribe(result => {
+      this.showEditInviteForm = false;
+      this.showSuccess("Invitado editado");
+      this.inviteForm.reset();
     })
   }
 
@@ -84,6 +102,12 @@ export class InviteRegisterComponent implements OnInit{
     this.showRemoveDialog = true;
   }
 
+  openEditDialog(invite: Invite) {
+    this.inviteIdToEdit = invite.id;
+    this.editInviteForm.patchValue(invite);
+    this.showEditInviteForm = true;
+  }
+
   removeInvite(){
     this.inviteService.deleteInvite(this.inviteToRemove!.id).subscribe(result => {
       this.showRemoveDialog = false;
@@ -95,6 +119,10 @@ export class InviteRegisterComponent implements OnInit{
     this.showInviteForm = false;
   }
 
+  closeEditDialog() {
+    this.showEditInviteForm = false;
+  }
+
   closeRemoveDialog() {
     this.inviteToRemove = undefined;
     this.showRemoveDialog = false;
@@ -102,6 +130,24 @@ export class InviteRegisterComponent implements OnInit{
 
   showSuccess(message: string) {
     this.messageService.add({ severity: 'success', summary: 'Listo!', detail: message });
+  }
+
+  getConfirmedInvitesCount(){
+    return this.invites.filter(invite => invite.attendance).length
+  }
+
+  getDeclinedInvitesCount(){
+    return this.invites.filter(invite => invite.attendance != null && !invite.attendance).length
+  }
+
+  getUnansweredInvitesCount(){
+    return this.invites.filter(invite => invite.attendance == null).length
+  }
+
+  getTotalInvites(){
+    return this.invites
+      .filter(invite => invite.attendance)
+      .reduce((acc, invite) => acc + invite.guestsCount, 0)
   }
 
 }

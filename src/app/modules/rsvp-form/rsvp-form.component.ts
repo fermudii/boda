@@ -41,6 +41,7 @@ export class RsvpFormComponent{
       this.inviteId = value.id;
       this.attendanceForm.patchValue({
         fullname: value.fullname,
+        alias: value.alias,
         attendance: value.attendance,
         guestsCount: value.guestsCount,
         comments: value.comments,
@@ -54,6 +55,7 @@ export class RsvpFormComponent{
 
   attendanceForm = new FormGroup({
     fullname: new FormControl(''),
+    alias: new FormControl(''),
     attendance: new FormControl(null as boolean | null),
     guestsCount: new FormControl(1),
     comments: new FormControl(''),

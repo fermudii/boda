@@ -4,4 +4,5 @@ export interface InfoItem {
   paragraph2: string | undefined;
   href: string | undefined;
   labelButton: string | undefined;
+  tooltip: string | undefined;
 }

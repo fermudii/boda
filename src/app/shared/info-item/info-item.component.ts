@@ -1,22 +1,24 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
 import {NgIf} from '@angular/common';
 import {InfoItem} from './info-item';
-import {Invite} from '../../modules/invite/models/invite';
+import {Tooltip} from 'primeng/tooltip';
 
 @Component({
   selector: 'app-info-item',
   imports: [
-    NgIf
+    NgIf,
+    Tooltip
   ],
   templateUrl: './info-item.component.html',
   styleUrl: './info-item.component.css'
 })
 export class InfoItemComponent implements OnInit {
 
+  @ViewChild(Tooltip) tooltip: Tooltip | undefined;
   @Input() infoItem: InfoItem | undefined;
   @Output() openDialog = new EventEmitter<InfoItem>();
 
-
+  isTooltipClicked: boolean = false;
   isDialog: boolean = false;
 
 
@@ -29,5 +31,15 @@ export class InfoItemComponent implements OnInit {
   showDialog(event: Event) {
     event.preventDefault();
     this.openDialog.emit(this.infoItem);
+  }
+
+  onClickTooltip() {
+    console.log("test")
+    this.isTooltipClicked = true;
+    this.tooltip?.activate();
+    setTimeout(()=> {
+      this.isTooltipClicked = false;
+    },
+      10000);
   }
 }

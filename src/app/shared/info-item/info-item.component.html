@@ -1,5 +1,12 @@
 <div class="flex flex-col">
-  <h3 class="text-xl">{{ infoItem?.header }}</h3>
+  <h3 class="text-xl">{{ infoItem?.header }}
+    <a *ngIf="infoItem?.tooltip"
+       class="pi pi-info-circle"
+       (click)="onClickTooltip()"
+       [pTooltip]="isTooltipClicked ? infoItem?.tooltip : ''"
+       [life]="10000" tooltipEvent="focus"
+       tooltipPosition="bottom"
+    ></a></h3>
   <p class="text-ternary">{{infoItem?.paragraph1}}</p>
   <p *ngIf="infoItem?.paragraph2" class="text-ternary">{{infoItem?.paragraph2}}</p>
   <ng-container *ngIf="infoItem?.labelButton">

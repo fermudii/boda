@@ -15,7 +15,7 @@
 
 
 /* Layout vertical en desktop */
-@media (min-width: 960px) {
+@media (min-width: 1024px) {
   ::ng-deep .responsive-menubar {
     flex-direction: column !important;
   }
@@ -31,3 +31,15 @@
     background: transparent !important;
   }
 }
+
+@media screen and (max-width: 960px) {
+  ::ng-deep .p-menubar:not(.p-menubar-mobile-active) .p-menubar-root-list {
+    display: none !important;
+  }
+
+  ::ng-deep .p-menubar .p-menubar-button {
+    display: flex !important;
+  }
+}
+
+

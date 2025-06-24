@@ -2,7 +2,6 @@ import {Component, OnInit} from '@angular/core';
 import {InfoItemComponent} from '../../shared/info-item/info-item.component';
 import {Itinerary} from './itinerary';
 import {NgForOf} from '@angular/common';
-import {Button} from 'primeng/button';
 import {Dialog} from 'primeng/dialog';
 
 @Component({
@@ -10,7 +9,6 @@ import {Dialog} from 'primeng/dialog';
   imports: [
     InfoItemComponent,
     NgForOf,
-    Button,
     Dialog
   ],
   templateUrl: './itinerary.component.html',
@@ -30,7 +28,8 @@ export class ItineraryComponent implements  OnInit {
       "Casa Grande",
       "Viernes 26 de Diciembre 06:00 p.m.",
       this.casaGrandeAddress,
-      "Ver Mapa"
+      "Ver Mapa",
+      "La Familia del novio inicia la party"
     ),
     new Itinerary(
       "Salida a la Misa",
@@ -66,7 +65,10 @@ export class ItineraryComponent implements  OnInit {
     new Itinerary(
       "Lavada de Olla",
       "Casa Grande",
-      "Domingo 28 de Diciembre 2:00 p.m."
+      "Domingo 28 de Diciembre 2:00 p.m.",
+      undefined,
+      undefined,
+      "Sigue la party"
     ),
   )
   }
