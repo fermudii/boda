@@ -29,7 +29,21 @@ export class StayListComponent implements OnInit {
         "Av. 16 de Septiembre 110, Moderna, 70110 Cdad. Ixtepec, Oax.",
         undefined,
         "https://maps.app.goo.gl/B4zR3vDHuzJV3gNf6",
-        "Ver Mapa")
+        "Ver Mapa"),
+      new Stay(
+        "Hotel Nochi",
+        "Carr. Juchitán - Ixtepec Km 3, 2da Secc, 70117 El Espinal, Oax.",
+        undefined,
+        "https://maps.app.goo.gl/vmAgFy28NoDE7Nzz7",
+        "Ver Mapa"
+      ),
+      new Stay(
+        "Hotel Central",
+        "Efraín R. Gómez 30, Centro, 70000 Juchitán de Zaragoza, Oax.",
+        undefined,
+        "https://maps.app.goo.gl/cxjn2qmHLY42MFcX9",
+        "Ver Mapa"
+      ),
     )
   }
 
