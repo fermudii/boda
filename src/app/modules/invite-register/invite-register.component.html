@@ -12,7 +12,7 @@
                  [scrollable]="true"
                  scrollHeight="400px"
                  class="border border-gray-300">
-          <ng-template #header let-columns>
+          <ng-template #header >
             <tr>
               <th pFrozenColumn>Alias</th>
               <th>Nombre</th>
@@ -27,7 +27,7 @@
               <th>Acciones</th>
             </tr>
           </ng-template>
-          <ng-template #body let-rowData let-columns="columns">
+          <ng-template #body let-rowData="columns">
             <tr>
               <td (click)="copyInvitation(rowData)" pFrozenColumn>{{rowData.alias}}</td>
               <td>{{rowData.fullname}}</td>
@@ -69,7 +69,7 @@
     </div>
     <div class="flex flex-col gap-2">
       <label for="phone">Teléfono</label>
-      <p-inputmask id="phone" required mask="(999) 999-9999" styleClass="phone-mask" formControlName="phone"/>
+      <p-inputmask id="phone" mask="(999) 999-9999" styleClass="phone-mask" formControlName="phone"/>
     </div>
     <div class="pt-10 flex flex-row gap-10 justify-between">
       <p-button type="button" label="Cancelar" icon="pi pi-times" (onClick)="closeDialog()"></p-button>
@@ -91,7 +91,7 @@
     </div>
     <div class="flex flex-col gap-2">
       <label for="phone">Teléfono</label>
-      <p-inputmask id="phone" required mask="(999) 999-9999" styleClass="phone-mask" formControlName="phone"/>
+      <p-inputmask id="phone" mask="(999) 999-9999" styleClass="phone-mask" formControlName="phone"/>
     </div>
     <div class="pt-10 flex flex-row gap-10 justify-between">
       <p-button type="button" label="Cancelar" icon="pi pi-times" (onClick)="closeEditDialog()"></p-button>

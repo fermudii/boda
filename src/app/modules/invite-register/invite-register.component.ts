@@ -76,9 +76,11 @@ export class InviteRegisterComponent implements OnInit{
 
   submitInvite() {
     const { fullname, alias, phone } = this.inviteForm.value;
-    this.inviteService.createInvite(fullname!, alias!, phone!).subscribe(result => {
+    this.inviteService.createInvite(fullname!, alias!, phone ?? '').subscribe(result  => {
       this.showInviteForm = false;
       this.showSuccess("Invitado agregado");
+      // @ts-ignore
+      this.copyInvitation(result.data.createInvite)
       this.inviteForm.reset();
     })
   }
@@ -87,6 +89,8 @@ export class InviteRegisterComponent implements OnInit{
     this.inviteService.updateInvite(this.inviteIdToEdit! ,this.editInviteForm.getRawValue() as Invite).subscribe(result => {
       this.showEditInviteForm = false;
       this.showSuccess("Invitado editado");
+      // @ts-ignore
+      this.copyInvitation(result.data.updateInvite)
       this.inviteForm.reset();
     })
   }
@@ -109,7 +113,7 @@ export class InviteRegisterComponent implements OnInit{
   }
 
   removeInvite(){
-    this.inviteService.deleteInvite(this.inviteToRemove!.id).subscribe(result => {
+    this.inviteService.deleteInvite(this.inviteToRemove!.id).subscribe( ()=> {
       this.showRemoveDialog = false;
       this.showSuccess("Invitado Eliminado!")
     })
