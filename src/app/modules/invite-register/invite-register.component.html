@@ -27,7 +27,7 @@
               <th>Acciones</th>
             </tr>
           </ng-template>
-          <ng-template #body let-rowData="columns">
+          <ng-template #body let-rowData>
             <tr>
               <td (click)="copyInvitation(rowData)" pFrozenColumn>{{rowData.alias}}</td>
               <td>{{rowData.fullname}}</td>
