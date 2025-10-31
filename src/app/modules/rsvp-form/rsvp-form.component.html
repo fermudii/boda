@@ -30,9 +30,9 @@
         </div>
         <div class="flex flex-col gap-2 py-5 ">
           <label for="guestsCount">Número de Personas</label>
-          <p-inputNumber id="guestsCount" required type="text" [showButtons]="true" formControlName="guestsCount" variant="filled" size="small" aria-describedby="guests-help">
+          <p-inputNumber min="1" id="guestsCount" required type="text" [showButtons]="true" formControlName="guestsCount" variant="filled" size="small" aria-describedby="guests-help">
           </p-inputNumber>
-          <small id="guests-help">Contándote a ti</small>
+          <small id="guests-help">Por favor indica el número total de personas que asistirán.</small>
         </div>
         <p-floatlabel variant="on">
           <textarea class="w-full" rows="5" cols="30" pTextarea variant="filled" formControlName="comments"></textarea>
